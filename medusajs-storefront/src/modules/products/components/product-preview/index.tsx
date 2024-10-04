@@ -8,6 +8,7 @@ import { Region } from "@medusajs/medusa"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Thumbnail from "../thumbnail"
 import PreviewPrice from "./price"
+import ProductAddCart from "../product-addCart"
 
 export default async function ProductPreview({
   productPreview,
@@ -47,6 +48,7 @@ export default async function ProductPreview({
           <Text className="text-ui-fg-subtle">{productPreview.title}</Text>
           <div className="flex items-center gap-x-2">
             {cheapestPrice && <PreviewPrice price={cheapestPrice} />}
+            <ProductAddCart product={pricedProduct} region={region} />
           </div>
         </div>
       </div>
