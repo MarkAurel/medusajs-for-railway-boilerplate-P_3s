@@ -8,6 +8,9 @@ import { Region } from "@medusajs/medusa"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Thumbnail from "../thumbnail"
 import PreviewPrice from "./price"
+import { Suspense } from "react"
+import ProductActions from "../product-actions"
+import ProductActionsWrapper from "@modules/products/templates/product-actions-wrapper"
 
 export default async function ProductPreview({
   productPreview,
@@ -46,6 +49,11 @@ export default async function ProductPreview({
         <div className="flex txt-compact-medium mt-4 justify-between">
           <Text className="text-ui-fg-subtle">{productPreview.title}</Text>
           <div className="flex items-center gap-x-2">
+          <Suspense
+            fallback={<ProductActions product={pricedProduct} region={region} />}
+          >
+            <ProductActionsWrapper id={pricedProduct.id} region={region} />
+          </Suspense>
             {cheapestPrice && <PreviewPrice price={cheapestPrice} />}
           </div>
         </div>
